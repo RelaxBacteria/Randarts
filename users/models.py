@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def _create_user(self, email, username, password, caught_posts, muses=0, gender=2, **extra_fields):
+    def _create_user(self, email, username, password, muses=0, gender=2, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
         """
@@ -11,7 +11,7 @@ class UserManager(BaseUserManager):
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
-        user = self.model(email=email, username=username,  gender=gender,**extra_fields)
+        user = self.model(email=email, username=username,  gender=gender, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -41,7 +41,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=255, verbose_name="이메일", unique=True)
     username = models.CharField(max_length=64, verbose_name="사용자명")
     gender = models.SmallIntegerField(choices=GENDER_CHOICES)
-    caught_posts = models.ForeignKey('arts.Art', on_delete=models.CASCADE)
+    caught_posts = models.ManyToManyField('arts.Art', blank=True)
     muses = models.IntegerField()
     objects = UserManager()
     USERNAME_FIELD = 'email'
