@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from taggit.managers import TaggableManager
 
 from users.models import User
@@ -36,3 +37,7 @@ class Comment(BaseModel):
 
     def __str__(self):
         return str(self.user) + str(self.content)
+=======
+
+# Create your models here.
+>>>>>>> a0abb14f89ddca52fedf33fe1dec85686c1b26d8
