@@ -11,7 +11,7 @@ class BaseModel(models.Model):
         abstract = True
 
 class Art(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey('users.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, blank=False)
     content = models.TextField()
     likes = models.ManyToManyField(User, related_name='Likes', blank=True)
@@ -31,7 +31,7 @@ class Art(BaseModel):
 
 class Comment(BaseModel):
     art = models.ForeignKey(Art, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
 
     def __str__(self):

@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def _create_user(self, email, username, password, muses=0, gender=2, **extra_fields):
+    def _create_user(self, email, username, password, caught_posts, muses=0, gender=2, **extra_fields):
         """
         Create and save a user with the given username, email, and password.
         """
@@ -19,7 +19,7 @@ class UserManager(BaseUserManager):
     def create_user(self, email, gender, username='', password=None, **extra_fields):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
-        return self._create_user(email, gender, username, muses, password, **extra_fields)
+        return self._create_user(email, gender, username, password, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -41,7 +41,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=255, verbose_name="이메일", unique=True)
     username = models.CharField(max_length=64, verbose_name="사용자명")
     gender = models.SmallIntegerField(choices=GENDER_CHOICES)
-    caught_posts = models.IntegerField()
+    caught_posts = models.ForeignKey('arts.Art', on_delete=models.CASCADE)
     muses = models.IntegerField()
     objects = UserManager()
     USERNAME_FIELD = 'email'
