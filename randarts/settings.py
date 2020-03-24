@@ -20,11 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-<<<<<<< HEAD
 SECRET_KEY = 'im(go458!u^7y^_)c30-+ddrd=)c-e5_3g%kaf35%b&ql^ime@'
-=======
-SECRET_KEY = 'rfd52&d^_52mu9t29--emra$1$!mn!r_!&rgnalhsybcd1s1$p'
->>>>>>> a0abb14f89ddca52fedf33fe1dec85686c1b26d8
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,18 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.contenttypes',
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
+    'taggit',
 
-    'users'
-=======
->>>>>>> a0abb14f89ddca52fedf33fe1dec85686c1b26d8
+    'users',
+    'arts',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,8 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
 
 AUTH_USER_MODEL = 'users.User'
-=======
->>>>>>> a0abb14f89ddca52fedf33fe1dec85686c1b26d8
